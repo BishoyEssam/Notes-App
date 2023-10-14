@@ -13,6 +13,13 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent, // Transparent status bar
+      systemNavigationBarColor:
+          Colors.black, // Set the color of the system navigation bar
+      systemNavigationBarIconBrightness:
+          Brightness.light, // Set the color of navigation bar icons
+    ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Notes App',
@@ -21,7 +28,8 @@ class MyApp extends StatelessWidget {
         appBarTheme: const AppBarTheme(
           systemOverlayStyle: SystemUiOverlayStyle(
             systemStatusBarContrastEnforced: true,
-            statusBarColor: Colors.transparent,
+            // statusBarColor: Colors.transparent,
+            // systemNavigationBarColor: Colors.black,
             systemNavigationBarColor: Colors.transparent,
             systemNavigationBarContrastEnforced: true,
             systemNavigationBarIconBrightness: Brightness.light,
