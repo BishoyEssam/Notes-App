@@ -10,8 +10,8 @@ class NoteItem extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.symmetric(vertical: 20),
       padding: const EdgeInsets.only(
-        top: 18,
-        bottom: 18,
+        top: 24,
+        bottom: 24,
         left: 12,
       ),
       decoration: BoxDecoration(
@@ -30,7 +30,7 @@ class NoteItem extends StatelessWidget {
               ),
             ),
             subtitle: Padding(
-              padding: const EdgeInsets.only(top: 16.0),
+              padding: const EdgeInsets.only(top: 16.0, bottom: 16),
               child: Text(
                 'SubTitle',
                 style: TextStyle(
