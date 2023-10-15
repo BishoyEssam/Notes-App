@@ -5,30 +5,58 @@ import 'package:flutter/material.dart';
 import 'CustomButton.dart';
 import 'CustomTextField.dart';
 
-class AddNoteBottomSheet extends StatelessWidget {
+class AddNoteBottomSheet extends StatefulWidget {
   const AddNoteBottomSheet({
     super.key,
   });
 
   @override
+  State<AddNoteBottomSheet> createState() => _AddNoteBottomSheetState();
+}
+
+class _AddNoteBottomSheetState extends State<AddNoteBottomSheet> {
+  GlobalKey<FormState> formKey = GlobalKey();
+  AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
+  String? title, supTitle;
+  @override
   Widget build(BuildContext context) {
-    return const Padding(
-      padding: EdgeInsets.all(16.0),
+    return Form(
+      key: formKey,
+      autovalidateMode: autovalidateMode,
       child: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 40,
             ),
-            CustomTextField(hint: 'Title'),
-            SizedBox(
+            CustomTextField(
+              hint: 'Title',
+              onSaved: (value) {
+                title = value;
+              },
+            ),
+            const SizedBox(
               height: 20,
             ),
             CustomTextField(
               hint: 'Content',
               maxLines: 10,
+              onSaved: (value) {
+                supTitle = value;
+              },
             ),
-            CustomButton(),
+            CustomButton(
+              onTap: () {
+                if (formKey.currentState!.validate()) {
+                  formKey.currentState!.save();
+                  print(title);
+                  print(supTitle);
+                } else {
+                  autovalidateMode = AutovalidateMode.always;
+                  setState(() {});
+                }
+              },
+            ),
           ],
         ),
       ),
