@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:notesapp/cubits/cubit/add_note_cubit.dart';
 import 'package:notesapp/models/note_model.dart';
 
 import 'views/NotesView.dart';
@@ -25,24 +27,27 @@ class MyApp extends StatelessWidget {
       systemNavigationBarIconBrightness:
           Brightness.light, // Set the color of navigation bar icons
     ));
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Notes App',
-      theme: ThemeData(
-        fontFamily: 'Poppins',
-        appBarTheme: const AppBarTheme(
-          systemOverlayStyle: SystemUiOverlayStyle(
-            systemStatusBarContrastEnforced: true,
-            // statusBarColor: Colors.transparent,
-            // systemNavigationBarColor: Colors.black,
-            systemNavigationBarColor: Colors.transparent,
-            systemNavigationBarContrastEnforced: true,
-            systemNavigationBarIconBrightness: Brightness.light,
+    return BlocProvider(
+      create: (BuildContext context) => AddNoteCubit(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Notes App',
+        theme: ThemeData(
+          fontFamily: 'Poppins',
+          appBarTheme: const AppBarTheme(
+            systemOverlayStyle: SystemUiOverlayStyle(
+              systemStatusBarContrastEnforced: true,
+              // statusBarColor: Colors.transparent,
+              // systemNavigationBarColor: Colors.black,
+              systemNavigationBarColor: Colors.transparent,
+              systemNavigationBarContrastEnforced: true,
+              systemNavigationBarIconBrightness: Brightness.light,
+            ),
           ),
+          brightness: Brightness.dark,
         ),
-        brightness: Brightness.dark,
+        home: const NotesView(),
       ),
-      home: const NotesView(),
     );
   }
 }
